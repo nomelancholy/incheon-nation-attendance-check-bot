@@ -13,6 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options.add_argument('headless')
 
 driver = webdriver.Chrome(service=Service(
     ChromeDriverManager().install()), options=options)
@@ -45,5 +46,19 @@ def chul_check():
         by=By.CSS_SELECTOR, value='.bt_area .bt_login')
     login_btn.click()
 
+    try:
+        element = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.LINK_TEXT, '로그아웃'))
+        )
+    except:
+        driver.quit()
+
+    driver.get('https://incheonation.kr/attendance')
+
+    submit_button = driver.find_element(by=By.CLASS_NAME, value='sm-btn')
+    submit_button.click()
+
     # https://incheonation.kr/attendance
 chul_check()
+
+driver.quit()

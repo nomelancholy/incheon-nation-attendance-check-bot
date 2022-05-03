@@ -2,15 +2,16 @@ name: ChulCheck
 
 on:
   schedule:
-    - cron: "00 15 * * *"
+    - cron: "00 00 * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up python
         uses: actions/setup-python@v3
         with:

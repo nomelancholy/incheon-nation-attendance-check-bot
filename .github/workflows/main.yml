@@ -5,17 +5,17 @@ name: ChulCheck
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: "35 12 * * *"
+    - cron: "00 15 * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Run a one-line script
+        run: echo Hello, world!
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Notification Slack
         uses: 8398a7/action-slack@v3
@@ -28,5 +28,4 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEB_HOOK_URL }}
     
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+

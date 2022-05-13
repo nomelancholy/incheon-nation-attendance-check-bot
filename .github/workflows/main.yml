@@ -2,7 +2,7 @@ name: ChulCheck
 
 on:
   schedule:
-    - cron: "00 22 * * *"
+    - cron: "00 15 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
